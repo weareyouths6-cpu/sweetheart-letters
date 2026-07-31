@@ -1,0 +1,73 @@
+import { useMemo } from "react";
+import type { DecorStyle } from "@/lib/letter-content";
+
+const GLYPHS: Record<Exclude<DecorStyle, "none">, string[]> = {
+  mixed: ["\u2661", "\u273f", "\u2727", "\u2740", "\u2726"],
+  hearts: ["\u2661", "\u2665", "\u2764"],
+  flowers: ["\u273f", "\u2740", "\u2698"],
+  sparkles: ["\u2727", "\u2726", "\u02da"],
+};
+
+type Bit = {
+  glyph: string;
+  left: number;
+  size: number;
+  delay: number;
+  duration: number;
+  opacity: number;
+  rot: number;
+};
+
+export function FloatingDecor({ style }: { style: DecorStyle }) {
+  const bits = useMemo<Bit[]>(() => {
+    if (style === "none") return [];
+    const glyphs = GLYPHS[style];
+    return Array.from({ length: 22 }, (_, i) => {
+      const r = (n: number) =>
+        Math.round(((((Math.sin(i * 12.9898 + n * 78.233) * 43758.5453) % 1) + 1) % 1) * 1000) /
+        1000;
+      return {
+        glyph: glyphs[i % glyphs.length]!,
+        left: Math.round(r(1) * 1000) / 10,
+        size: Math.round(10 + r(2) * 20),
+        delay: Math.round(r(3) * 180) / 10,
+        duration: Math.round(16 + r(4) * 16),
+        opacity: Math.round((0.25 + r(5) * 0.4) * 100) / 100,
+        rot: Math.round(-60 + r(6) * 120),
+      };
+    });
+  }, [style]);
+
+  if (!bits.length) return null;
+
+  return (
+    <div className="lp-decor pointer-events-none fixed inset-0 overflow-hidden" aria-hidden="true">
+      {bits.map((b, i) => (
+        <span
+          key={i}
+          className="absolute bottom-[-10vh] select-none"
+          style={
+            {
+              left: `${b.left}%`,
+              fontSize: `${b.size}px`,
+              color: "var(--lp-primary)",
+              animation: `lp-float ${b.duration}s linear ${b.delay}s infinite`,
+              "--lp-op": String(b.opacity),
+              "--lp-rot": `${b.rot}deg`,
+            } as React.CSSProperties
+          }
+        >
+          {b.glyph}
+        </span>
+      ))}
+      <div
+        className="absolute -left-24 top-10 h-72 w-72 rounded-full blur-3xl"
+        style={{ background: "color-mix(in srgb, var(--lp-primary) 18%, transparent)" }}
+      />
+      <div
+        className="absolute -right-24 bottom-0 h-80 w-80 rounded-full blur-3xl"
+        style={{ background: "color-mix(in srgb, var(--lp-primary) 14%, transparent)" }}
+      />
+    </div>
+  );
+}
