@@ -52,7 +52,7 @@ export function FloatingDecor({ style }: { style: DecorStyle }) {
               fontSize: `${b.size}px`,
               color: "var(--lp-primary)",
               animation: `lp-float ${b.duration}s linear ${b.delay}s infinite`,
-              "--lp-op": b.opacity,
+              "--lp-op": String(b.opacity),
               "--lp-rot": `${b.rot}deg`,
             } as React.CSSProperties
           }
