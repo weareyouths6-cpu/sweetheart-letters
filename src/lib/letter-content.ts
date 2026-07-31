@@ -57,7 +57,7 @@ export const DEFAULT_DATA: LetterData = {
   content: {
     girlfriendName: "My Love",
     senderName: "Yours, always",
-    greeting: "HAPPY NATIONAL GIRLFRIEND DAY",
+    greeting: "Happy National Girlfriend Day & 2 years 11 months Anniversary",
     subtitle: "Click the button below... I made something for you \u2661",
     question: "Do you want to open it? (\uff61\u2022\u0301\u203f\u2022\u0300\uff61)",
     startButton: "Start \u2661",
@@ -65,8 +65,8 @@ export const DEFAULT_DATA: LetterData = {
     notYetButton: "Not yet",
     letterTitle: "Dear my love \u2661",
     letterBody:
-      "You're the best thing that life has given me so far, and I know nothing could ever take your place in my heart.\n\nThe love I have for you is pure, quiet and endless. You bring so much joy into my life, in the smallest ways \u2014 your laugh in the middle of a boring day, the way you say my name, the way everything feels softer when you're near.\n\nThank you for choosing me, again and again. I promise to keep choosing you too.",
-    finalMessage: "HAPPY NATIONAL GIRLFRIEND DAY \u2661",
+      "Happy National Girlfriend Day, my love. ❤️\n\n2 years and 11 months of us — and through every moment, I’ve learned that love isn’t just about the happy days, but about choosing each other through everything.\n\nThank you for being a part of my life and for making these years so meaningful. Almost 3 years, and I’d still choose you, in every lifetime.\n\nI love you, always. ❤️",
+    finalMessage: "HAPPY NATIONAL GIRLFRIEND DAY & 2 YEARS 11 MONTHS ANNIVERSARY \u2661",
     coverImage: coverDefault,
     letterImage: letterDefault,
     gallery: [],

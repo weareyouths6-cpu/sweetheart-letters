@@ -108,11 +108,11 @@ export function LetterExperience({
               onClick={() => setPanelOpen(true)}
               className="underline-offset-4 hover:underline"
             >
-              Customize
+              
             </button>
             <span aria-hidden="true">{"\u00b7"}</span>
             <Link to="/admin" className="underline-offset-4 hover:underline">
-              Admin
+              
             </Link>
           </div>
         )}
