@@ -23,15 +23,17 @@ export function FloatingDecor({ style }: { style: DecorStyle }) {
     if (style === "none") return [];
     const glyphs = GLYPHS[style];
     return Array.from({ length: 22 }, (_, i) => {
-      const r = (n: number) => ((Math.sin(i * 12.9898 + n * 78.233) * 43758.5453) % 1 + 1) % 1;
+      const r = (n: number) =>
+        Math.round(((((Math.sin(i * 12.9898 + n * 78.233) * 43758.5453) % 1) + 1) % 1) * 1000) /
+        1000;
       return {
         glyph: glyphs[i % glyphs.length]!,
-        left: r(1) * 100,
-        size: 10 + r(2) * 20,
-        delay: r(3) * 18,
-        duration: 16 + r(4) * 16,
-        opacity: 0.25 + r(5) * 0.4,
-        rot: -60 + r(6) * 120,
+        left: Math.round(r(1) * 1000) / 10,
+        size: Math.round(10 + r(2) * 20),
+        delay: Math.round(r(3) * 180) / 10,
+        duration: Math.round(16 + r(4) * 16),
+        opacity: Math.round((0.25 + r(5) * 0.4) * 100) / 100,
+        rot: Math.round(-60 + r(6) * 120),
       };
     });
   }, [style]);
