@@ -62,26 +62,26 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --radius: 1.25rem;
+  --background: oklch(0.978 0.014 349);
+  --foreground: oklch(0.38 0.055 5);
+  --card: oklch(0.995 0.005 349);
+  --card-foreground: oklch(0.38 0.055 5);
+  --popover: oklch(0.995 0.005 349);
+  --popover-foreground: oklch(0.38 0.055 5);
+  --primary: oklch(0.72 0.135 358);
+  --primary-foreground: oklch(0.995 0.005 349);
+  --secondary: oklch(0.955 0.02 350);
+  --secondary-foreground: oklch(0.45 0.07 5);
+  --muted: oklch(0.962 0.014 350);
+  --muted-foreground: oklch(0.58 0.045 5);
+  --accent: oklch(0.94 0.03 350);
+  --accent-foreground: oklch(0.42 0.07 5);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --border: oklch(0.9 0.035 350);
+  --input: oklch(0.9 0.035 350);
+  --ring: oklch(0.72 0.135 358);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -140,5 +140,76 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+  }
+}
+
+/* ---------- Romantic letter experience ---------- */
+@layer components {
+  .lp-root {
+    font-family: var(--lp-font-body);
+    color: var(--lp-text);
+  }
+  .lp-display {
+    font-family: var(--lp-font-display);
+  }
+  .lp-card {
+    background: color-mix(in srgb, white 92%, var(--lp-bg));
+    border: 1px solid var(--lp-border);
+    box-shadow:
+      0 18px 50px -20px color-mix(in srgb, var(--lp-primary) 55%, transparent),
+      0 2px 10px -4px color-mix(in srgb, var(--lp-primary) 30%, transparent);
+  }
+  .lp-btn {
+    background: var(--lp-primary);
+    color: #fff;
+    box-shadow: 0 10px 24px -10px color-mix(in srgb, var(--lp-primary) 85%, transparent);
+    transition:
+      transform 0.25s ease,
+      filter 0.25s ease;
+  }
+  .lp-btn:hover {
+    filter: brightness(1.06);
+    transform: translateY(-2px);
+  }
+  .lp-btn-ghost {
+    background: color-mix(in srgb, white 80%, var(--lp-bg));
+    color: var(--lp-text);
+    border: 1px solid var(--lp-border);
+    transition:
+      transform 0.25s ease,
+      filter 0.25s ease;
+  }
+  .lp-paper {
+    background:
+      repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 33px,
+        color-mix(in srgb, var(--lp-border) 55%, transparent) 34px
+      ),
+      color-mix(in srgb, white 95%, var(--lp-bg));
+  }
+}
+
+@keyframes lp-float {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: var(--lp-op, 0.6);
+  }
+  90% {
+    opacity: var(--lp-op, 0.6);
+  }
+  100% {
+    transform: translateY(-115vh) rotate(var(--lp-rot, 40deg));
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lp-decor {
+    display: none;
   }
 }
